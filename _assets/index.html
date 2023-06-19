@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/loader.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap-sortable.css">
+    <link rel="stylesheet" href="/css/jquery.dropdown.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- http://fortawesome.github.io/Font-Awesome/get-started/ -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/main.css">
+
+    <style>
+        .drop-area {
+            width: 300px;
+            height: 200px;
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 20px auto;
+        }
+
+        .drop-area.highlight {
+            border-color: #009688;
+        }
+
+        .drop-area p {
+            margin: 75px 0;
+            font-size: 18px;
+            color: #888;
+        }
+    </style>
+    <div class="container">
+        <header>
+            <hr style="margin: 6px 0px;">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-2">
+                    <img src="/css/img/logo-imscience.jpg" style="width:100%px;height:75px;" ;></img>
+                </div>
+                <div class="col">
+                    <h0 style="padding-left: 10px; font-size: 25px;letter-spacing: 2pt;">
+                        Image and Multimedia Data Science Laboratory (IMSCIENCE)
+                    </h0>
+                </div>
+            </div>
+        </header>
+    </div>
+
+
+    <link rel="stylesheet" href="css/nav_theme2.css">
+
+
+
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+    </script>
+
+
+
+    <title>Image and Multimedia Data Science Laboratory (IMScience) </title>
+
+</head>
+
+
+<body>
+
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+
+
+
+
+    <!-- bootstrap navbar -->
+    <div class="container-fluid">
+        <div class="navbar navbar-inverse">
+            <div class="navbar-inner" style="width: 100%;height: 50px;font-size: 15px;">
+                <div class="nav-collapse">
+                    <ul class="nav">
+
+                        <li><a href="http://imscience.icei.pucminas.br/index.html">IMScience</a></li>
+
+                        <li><a href="http://imscience.icei.pucminas.br/team.html">Team</a></li>
+
+                        <li><a href="http://imscience.icei.pucminas.br/research.html">Research</a></li>
+
+                        <li><a href="http://imscience.icei.pucminas.br/projects.html">Projects</a></li>
+
+                        <li><a href="http://imscience.icei.pucminas.br/supervisions.html">Supervisions</a></li>
+
+                        <li><a href="http://imscience.icei.pucminas.br/codes.html">Codes</a></li>
+
+                        <li><a href="http://imscience.icei.pucminas.br/venues.html">Venues</a></li>
+
+                        <li><a href="http://imscience.icei.pucminas.br/paper.html">Publications</a></li>
+
+                        <li><a href="http://imscience.icei.pucminas.br/call-for-research.html">Opportunities</a></li>
+
+                        <li><a href="http://imscience.icei.pucminas.br/tech-talks.html">Tech Talks</a></li>
+
+
+                    </ul>
+                </div>
+
+                <div class="btn-group pull-right">
+                    <a class="btn btn-primary"
+                        href="http://www.facebook.com/sharer.php?u=http://www.imscience.icei.pucminas.br/"
+                        data-toggle="tooltip" data-placement="bottom" title="share at facebook">
+                        <i class="icon-facebook-sign icon-large"></i>
+                    </a>
+                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="access PUC Minas"
+                        href="http://www.pucminas.br">
+                        <i>PUC Minas</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- Body  -->
+
+    <div class="container">
+        <form class="box" id="videoForm" enctype="multipart/form-data">
+            <div class="row align-items-center justify-content-center p-5">
+                <div class="col-4">
+                    <div class="align-items-center border text-center p-5" id="dropArea">
+                        <label class="h4" for="video" id="videoInputLabel"><strong>Clique aqui ou arraste e solte os vídeos aqui</strong></label>
+                        <input type="file" class="form-control-file" id="video" accept="video/*" style="display: none;" multiple>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <button type="submit" id="submitButton">Enviar</button>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-12">
+                    <ul id="uploadedVideosList">
+                        <!-- <li class="row-cols-6 flex-row justify-content-center">
+                            File name here
+                            <button class="btn-close btn-small btn-danger mx-3"/>                            </button>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-group" style="display: flex;flex-direction: column;">
+                        <label for="time">Tempo</label>
+                        <select name="time" id="time" required>
+                            <option value="1">Tempo 1</option>
+                            <option value="2">Tempo 2</option>
+                            <option value="3">Tempo 3</option>
+                            <option value="4">Tempo 4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group" style="display: flex;flex-direction: column;">
+                        <label for="rate">Rate</label>
+                        <select name="rate" id="rate" required>
+                            <option value="1">Rate 1</option>
+                            <option value="2">Rate 2</option>
+                            <option value="3">Rate 3</option>
+                            <option value="4">Rate 4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group" style="display: flex;flex-direction: column;">
+                        <label for="hierarchical_method">Hierarchical method</label>
+                        <select name="hierarchical_method" id="hierarchical_method" required>
+                            <option value="1">Hierarchical method 1</option>
+                            <option value="2">Hierarchical method 2</option>
+                            <option value="3">Hierarchical method 3</option>
+                            <option value="4">Hierarchical method 4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group" style="display: flex;flex-direction: column;">
+                        <label for="cut">Cut</label>
+                        <select name="cut" id="cut" required>
+                            <option value="1">Cut 1</option>
+                            <option value="2">Cut 2</option>
+                            <option value="3">Cut 3</option>
+                            <option value="4">Cut 4</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+    <!-- Show images -->
+    <div class="container">
+        <div class="row justify-content-center" style="border: #dbdbdb 2px dashed;padding: 5px;">
+            <div class="col-12">
+                <div class="image-container" style="padding-top: 10px;">
+                    <div class="row grid-container">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+    <div class="container pt-3">
+        <h2 id="supported-by">Supported by</h2>
+        <table class="table table-striped table-condensed table-hover sortable">
+            <tbody>
+                <tr class="odd">
+                    <td><a href="http://www.pucminas.br"><img src="/css/img/logo_puc_54.png"
+                                style="width:75px;height:75px;"></a></td>
+                    <td style="text-align: center;"><a href="http://www.cnpq.br"><img src="/css/img/logo_cnpq_54.png"
+                                style="width:150px;height:75px;"></a></td>
+                    <td style="text-align: center;"><a href="http://www.capes.gov.br"><img
+                                src="/css/img/logo_capes_54.png" style="width:75px;height:75px;"></a></td>
+                    <td style="text-align: right;"><a href="http://www.fapemig.br"><img
+                                src="/css/img/logo_fapemig_54.png" style="width:100px;height:75px;"></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+
+
+    <div class="container">
+        <footer>
+            <hr>
+            <small style="float:left;"><img src="/css/img/logo-imscience.jpg"
+                    style="width:138px;height:75px;float:center" ;></img>
+                &copy;Image and Multimedia Data Science Laboratory (IMScience) <span class="math"> - 2022 -.</span>
+                This site is built using
+                <a href="https://bitbucket.org/chhshen/markdown2web" target="_blank" data-toggle="tooltip"
+                    data-placement="right" title="check out the code on bitbucket">
+                    <i class="icon-fixed-width icon-bitbucket-sign"></i>markdown2web</a>.
+            </small>
+            <small style="float:right;">
+                <a href="#" data-toggle="tooltip" title="scroll to the top of the page"
+                    onclick="scrollToTop();return false">
+                    <i class="icon-fixed-width icon-arrow-up"></i>
+                </a>
+            </small>
+        </footer>
+    </div>
+    <!--
+<script src="http://code.jquery.com/jquery.js"></script>
+-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <!-- Preloader -->
+    <script type="text/javascript">
+        //<![CDATA[
+        $(window).load(function () {                 // makes sure the whole site is loaded
+            $("#status").fadeOut();                     // will first fade out the loading animation
+            $("#preloader").delay(350).fadeOut("slow"); // will fade out the white DIV that covers the website.
+        })
+//]]>
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-sortable.js"></script>
+    <script src="/js/jquery.dropdown.js"></script>
+    <script src="/js/cs.js"></script>
+    <script src="/js/file-upload.js"></script>
+    <!-- enable bootstrap tooltip, example: <a href="#" data-toggle="tooltip" title="xxxxx">WSS ... -->
+    <script type="text/javascript">
+        $(function () {
+            $("[data-toggle='tooltip']").tooltip();
+        });
+
+    </script>
+
+</body>
+
+</html>
