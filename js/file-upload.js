@@ -1,9 +1,11 @@
 document
   .getElementById("videoForm")
   .addEventListener("submit", function (event) {
+
     // Prevent default action from browser
     event.preventDefault();
 
+    // Create FormData object
     var form = event.target;
     var formData = new FormData(form);
 
@@ -28,7 +30,7 @@ document
     formData.append("hierarchical_method", hierarchical_method);
     formData.append("cut", cut);
 
-    // Faça o envio da requisição POST para o backend
+    // POST the formData to backend
     fetch("https://flask-production-0d95.up.railway.app/api/post/video", {
       method: "POST",
       body: formData,
@@ -44,6 +46,7 @@ document
       });
   });
 
+  // Function to retrieve images from backend
 function fetchImages() {
   fetch("https://flask-production-0d95.up.railway.app/api/get/images")
     .then(function (response) {
@@ -53,27 +56,6 @@ function fetchImages() {
       return response.json();
     })
     .then(function (data) {
-      // const images = data || [];
-      // const gridContainer = document.querySelector('.grid-container');
-      // gridContainer.innerHTML = '';
-
-      // if (images.length === 0) {
-      //     const message = document.createElement('p');
-      //     message.textContent = 'No images available.';
-      //     gridContainer.appendChild(message);
-      // } else {
-      //     images.forEach(function (imageUrl) {
-      //         const col = document.createElement('div');
-      //         col.className = 'col-lg-3 col-md-5 col-sm-10 mb-3';
-
-      //         const img = document.createElement('img');
-      //         img.src = imageUrl;
-      //         img.alt = 'Image';
-
-      //         col.appendChild(img);
-      //         gridContainer.appendChild(col);
-      //     });
-      // }
       const images = data || [];
       const gridContainer = document.querySelector(".grid-container");
       gridContainer.innerHTML = "";
@@ -99,15 +81,15 @@ function fetchImages() {
           gridContainer.appendChild(col);
         }
 
-        // Centralize o conjunto de imagens
-        const remainingSpace =
-          maxImagesPerRow - (totalImages % maxImagesPerRow);
-        for (let i = 0; i < remainingSpace; i++) {
-          const col = document.createElement("div");
-          col.className = "col-lg-3 col-md-4 col-sm-6 mb-3";
+        // Center the images
+        // const remainingSpace =
+        //   maxImagesPerRow - (totalImages % maxImagesPerRow);
+        // for (let i = 0; i < remainingSpace; i++) {
+        //   const col = document.createElement("div");
+        //   col.className = "col-lg-3 col-md-4 col-sm-6 mb-3";
 
-          gridContainer.appendChild(col);
-        }
+        //   gridContainer.appendChild(col);
+        // }
       }
     })
     .catch(function (error) {
@@ -142,6 +124,7 @@ videoInput.addEventListener("change", function (Event) {
   handleFiles(files);
 });
 
+// Function to handle uploaded files
 function handleFiles(files) {
   for (var i = 0; i < files.length; i++) {
     var file = files[i];
