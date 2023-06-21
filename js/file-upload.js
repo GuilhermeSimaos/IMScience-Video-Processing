@@ -29,7 +29,7 @@ document
     formData.append("cut", cut);
 
     // Faça o envio da requisição POST para o backend
-    fetch("http://localhost:5000/api/post/video", {
+    fetch("https://flask-production-0d95.up.railway.app/api/post/video", {
       method: "POST",
       body: formData,
     })
@@ -45,7 +45,7 @@ document
   });
 
 function fetchImages() {
-  fetch("http://localhost:5000/api/get/images")
+  fetch("https://flask-production-0d95.up.railway.app/api/get/images")
     .then(function (response) {
       if (!response.ok) {
         throw new Error("Error fetching images");
